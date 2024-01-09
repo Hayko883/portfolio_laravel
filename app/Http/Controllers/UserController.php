@@ -14,7 +14,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
+        $user = User::where('id', \auth()->id())->with('language')->first();
+		
         return response()->json([
             'success' => true,
             'data' => $user,
@@ -47,11 +48,13 @@ class UserController extends Controller
     public function login(Request $request){
         if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) {
             $user = $request->user();
+			
             $token = $user['token'] = $user->createToken('Portfolio')->plainTextToken;
             return response()->json([
                 'success' => true,
                 'data' => $user,
-                'token'=> $token
+                'token'=> $token,
+	            
             ]);
         }
 //        }else{

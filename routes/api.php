@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'auth:sanctum'], function () {
+	Route::get('/user',[\App\Http\Controllers\UserController::class, 'index']);
+	Route::post('/storePercent',[\App\Http\Controllers\UserLanguagesController::class,'storePercent']);
+
 });
 //Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
 //    Route::post('login','login');
@@ -25,3 +28,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/', [\App\Http\Controllers\UserController::class, 'index']);
 Route::post('store', [\App\Http\Controllers\UserController::class, 'store']);
 Route::post('/auth/login', [\App\Http\Controllers\UserController::class, 'login']);
+Route::get('/languages', [\App\Http\Controllers\UserLanguagesController::class, 'index']);
+
+

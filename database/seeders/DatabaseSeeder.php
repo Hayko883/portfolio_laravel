@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(LanguageSeeder::class);
 //        $this->call(UserSeeder::class);
-        $this->call(UserLanguagesSeeder::class);
+//        $this->call(UserLanguagesSeeder::class);
         $this->call(SkillsSeeder::class);
-        $this->call(UserSkilsSeeder::class);
+//        $this->call(UserSkilsSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
