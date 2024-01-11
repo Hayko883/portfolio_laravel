@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth:sanctum'], function () {
 	Route::get('/user',[\App\Http\Controllers\UserController::class, 'index']);
 	Route::post('/storePercent',[\App\Http\Controllers\UserLanguagesController::class,'storePercent']);
-
+	Route::put('/updatePercent', [\App\Http\Controllers\UserLanguagesController::class,'updatePercent']);
+	
 });
 //Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
 //    Route::post('login','login');
