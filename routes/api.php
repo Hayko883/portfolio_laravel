@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 	Route::get('/user',[\App\Http\Controllers\UserController::class, 'index']);
-	Route::post('/storePercent',[\App\Http\Controllers\UserLanguagesController::class,'storePercent']);
-	Route::put('/updatePercent', [\App\Http\Controllers\UserLanguagesController::class,'updatePercent']);
+	Route::post('/storePercentLanguages',[\App\Http\Controllers\UserLanguagesController::class,'storePercent']);
+	Route::put('/updatePercentLanguages', [\App\Http\Controllers\UserLanguagesController::class,'updatePercent']);
+	Route::post('/storePercentSkills',[\App\Http\Controllers\UserSkillsController::class,'storePercent']);
+	Route::put('/updatePercentSkills', [\App\Http\Controllers\UserSkillsController::class,'updatePercent']);
 	
 });
 //Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
@@ -29,6 +31,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 Route::get('/', [\App\Http\Controllers\UserController::class, 'index']);
 Route::post('store', [\App\Http\Controllers\UserController::class, 'store']);
 Route::post('/auth/login', [\App\Http\Controllers\UserController::class, 'login']);
-Route::get('/languages', [\App\Http\Controllers\UserLanguagesController::class, 'index']);
+Route::get('/languages', [\App\Http\Controllers\LanguageController::class, 'index']);
+Route::get('/skills', [\App\Http\Controllers\SkillController::class, 'index']);
 
 

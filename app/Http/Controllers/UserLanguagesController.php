@@ -13,13 +13,18 @@ class UserLanguagesController extends Controller
 	public function storePercent(Request $request)
 	{
 		$userLanguages = $request->get('percent');
-		foreach ($userLanguages as &$language) {
-			$language['user_id'] = auth()->id();
-			$language['created_at'] = Carbon::now();
-			$language['updated_at'] = Carbon::now();
+		$languageData = [];
+		foreach ($userLanguages as $key => &$language) {
+			$languageData[] =[
+				'user_id' => auth()->id(),
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+				'percent' => $language,
+				'language_id' => $key
+			];
 		}
 		
-		UserLanguages::insert($userLanguages);
+		UserLanguages::insert($languageData);
 		return response()->json([
 			'success' => true,
 			'data' => $userLanguages,
@@ -41,13 +46,5 @@ class UserLanguagesController extends Controller
 			'success' => true,
 			'data' => $updateLanguages,
 		]);
-		
 	}
-	
-	public function index()
-	{
-		$languages = Language::all();
-		return response()->json(['languages' => $languages]);
-	}
-	
 }

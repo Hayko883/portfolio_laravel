@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::where('id', \auth()->id())->with('language')->first();
+        $user = User::where('id', \auth()->id())->with('language','skill')->first();
 		
         return response()->json([
             'success' => true,
