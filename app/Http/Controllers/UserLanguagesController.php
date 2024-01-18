@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Language;
-use App\Models\User;
 use App\Models\UserLanguages;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,10 +15,10 @@ class UserLanguagesController extends Controller
 		foreach ($userLanguages as $key => &$language) {
 			$languageData[] =[
 				'user_id' => auth()->id(),
+				'percent' => $language,
+				'language_id' => $key,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
-				'percent' => $language,
-				'language_id' => $key
 			];
 		}
 		
@@ -30,7 +28,6 @@ class UserLanguagesController extends Controller
 			'data' => $userLanguages,
 		]);
 	}
-	
 	public function updatePercent(Request $request)
 	{
 		$updateLanguages = UserLanguages::where('user_id', auth()->user()->id)->get();

@@ -22,10 +22,10 @@ class UserController extends Controller
         ], 200);
 
     }
+	
 
     public function store(UserStoreRequest $request)
     {
-
         $user = User::create([
             'name' => $request->name,
             'password' => Hash::make($request->password),
@@ -57,8 +57,6 @@ class UserController extends Controller
 	            
             ]);
         }
-//        }else{
-//            dd(false);
-//        }
     }
+	
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('age');
             $table->string('address');
             $table->string('profession');
+	        $table->tinyInteger('role')->default(\App\Models\User::ROLE_USER);
             $table->rememberToken();
             $table->timestamps();
         });

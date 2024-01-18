@@ -23,6 +23,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 	Route::put('/updatePercentSkills', [\App\Http\Controllers\UserSkillsController::class,'updatePercent']);
 	
 });
+
+Route::middleware(['auth:sanctum','admin'])->group(function () {
+	Route::get('/admin/users', [\App\Http\Controllers\SuperAdminController::class, 'index']);
+	Route::get('/admin/user/{id}', [\App\Http\Controllers\SuperAdminController::class, 'userId']);
+	Route::get('/admin/delete/{id}', [\App\Http\Controllers\SuperAdminController::class, 'deleteUser']);
+	// Other routes for admins...
+});
 //Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
 //    Route::post('login','login');
 //    Route::post('store','store');
@@ -33,5 +40,7 @@ Route::post('store', [\App\Http\Controllers\UserController::class, 'store']);
 Route::post('/auth/login', [\App\Http\Controllers\UserController::class, 'login']);
 Route::get('/languages', [\App\Http\Controllers\LanguageController::class, 'index']);
 Route::get('/skills', [\App\Http\Controllers\SkillController::class, 'index']);
+//Route::get('/admin/users', [\App\Http\Controllers\SuperAdminController::class, 'index']);
+//Route::get('/admin/user/{id}', [\App\Http\Controllers\SuperAdminController::class, 'userId']);
 
 

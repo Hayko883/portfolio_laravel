@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\SuperAdmin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
 //        $this->call(UserSeeder::class);
 //        $this->call(UserLanguagesSeeder::class);
         $this->call(SkillsSeeder::class);
+        $this->call(SuperAdminSeeder::class);
 //        $this->call(UserSkilsSeeder::class);
         // \App\Models\User::factory(10)->create();
 
