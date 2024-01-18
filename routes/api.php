@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum','admin'])->group(function () {
 	Route::get('/admin/users', [\App\Http\Controllers\SuperAdminController::class, 'index']);
 	Route::get('/admin/user/{id}', [\App\Http\Controllers\SuperAdminController::class, 'userId']);
 	Route::get('/admin/delete/{id}', [\App\Http\Controllers\SuperAdminController::class, 'deleteUser']);
+	Route::post('/admin/create', [\App\Http\Controllers\SuperAdminController::class, 'createUser']);
 	// Other routes for admins...
 });
 //Route::controller(\App\Http\Controllers\UserController::class)->group(function (){

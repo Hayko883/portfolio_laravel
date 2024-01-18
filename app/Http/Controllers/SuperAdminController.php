@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
@@ -39,5 +41,28 @@ class SuperAdminController extends Controller
 		} else {
 			return response()->json(['error' => 'Unauthorized. Admins only.'], 403);
 		}
+	}
+	public function createUser(UserStoreRequest $request)
+	{
+		
+		if (auth()->user()->role === 1) {
+			$user = User::create([
+				'name' => $request->name,
+				'password' => Hash::make($request->password),
+				'email' => $request->email,
+				'role' => $request->role,
+				'address' => $request->address,
+				'profession' => 'USA',
+				'age' => 25 ,
+				
+			]);
+			return response()->json([
+				'success' => true,
+				'data' => $user,
+			]);
+		}else {
+			return response()->json(['error' => 'Unauthorized. Admins only.'], 403);
+		}
+		
 	}
 }
