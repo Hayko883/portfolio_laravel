@@ -29,6 +29,15 @@ class User extends Authenticatable
     public function skill(){
         return $this->belongsToMany(Skill::class,'user_skills')->withPivot('percent');
     }
+	
+	public function education(){
+		return $this->hasMany(Education::class);
+	}
+	
+	public function works()
+	{
+		return $this->hasMany(Works::class);
+	}
 
     protected $hidden = [
         'password',

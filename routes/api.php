@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 	Route::get('/user',[\App\Http\Controllers\UserController::class, 'index']);
+	Route::get('/user/{id}',[\App\Http\Controllers\UserController::class, 'userId']);
 	Route::post('/storePercentLanguages',[\App\Http\Controllers\UserLanguagesController::class,'storePercent']);
 	Route::put('/updatePercentLanguages', [\App\Http\Controllers\UserLanguagesController::class,'updatePercent']);
 	Route::post('/storePercentSkills',[\App\Http\Controllers\UserSkillsController::class,'storePercent']);
+	Route::post('/storeEducation',[\App\Http\Controllers\EducationController::class,'store']);
+	Route::post('/storeWork',[\App\Http\Controllers\WorkController::class,'store']);
 	Route::put('/updatePercentSkills', [\App\Http\Controllers\UserSkillsController::class,'updatePercent']);
 	
 });
@@ -29,6 +32,7 @@ Route::middleware(['auth:sanctum','admin'])->group(function () {
 	Route::get('/admin/user/{id}', [\App\Http\Controllers\SuperAdminController::class, 'userId']);
 	Route::get('/admin/delete/{id}', [\App\Http\Controllers\SuperAdminController::class, 'deleteUser']);
 	Route::post('/admin/create', [\App\Http\Controllers\SuperAdminController::class, 'createUser']);
+	Route::put('/admin/update/{id}',[\App\Http\Controllers\SuperAdminController::class, 'update']);
 	// Other routes for admins...
 });
 //Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
